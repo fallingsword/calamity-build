@@ -67,7 +67,7 @@ input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible
 .tip:hover, .tip:focus-visible { color: var(--ink); border-color: var(--muted); outline: none }
 .tip .tipb { display: none; position: absolute; left: -8px; top: 22px; z-index: 30; width: 300px; background: var(--bar); border: 1px solid var(--line2); padding: 9px 11px; font: 13px/1.45 var(--ui); color: var(--ink); text-align: left; white-space: normal; font-weight: 400 }
 .tip:hover .tipb, .tip:focus .tipb { display: block }
-.for { font-weight: 400; color: var(--accent); margin-left: 4px }
+.for { font-weight: 400; color: var(--muted) }
 .help summary { list-style: none; font: 13px var(--ui); width: 20px; height: 20px; display: grid; place-items: center; border: 1px solid var(--line2); background: var(--raise); cursor: pointer; color: var(--ink) }
 .help summary::-webkit-details-marker { display: none }
 .help .pop { position: absolute; right: 0; top: 26px; z-index: 5; width: min(520px, calc(100vw - 32px)); background: var(--bar); border: 1px solid var(--line2); padding: 12px 14px; display: grid; gap: 8px; color: var(--ink) }
@@ -238,7 +238,9 @@ table.mx { border-collapse: collapse; width: 100%; font: 12px var(--ui); font-va
 .pickbox, .planbox { max-height: 80vh; overflow: auto }
 .planhead { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; position: sticky; top: -8px; background: var(--panel); padding-block: 2px 6px; z-index: 1 }
 .planhead .cap { margin: 0 }
-#bDemoFor, #bDetailFor, #bRawFor { font-weight: 400; color: var(--accent); margin-left: 2px }
+#bDemoFor, #bDetailFor, #bRawFor { font-weight: 400; color: var(--ink) }
+/* the text after a box title only takes space when there is some (no stray gap when it's empty) */
+#bDemoFor:not(:empty), #bDetailFor:not(:empty), #bRawFor:not(:empty), #bDone:not(:empty) { margin-left: 5px }
 .stg { all: unset; box-sizing: border-box; display: flex; gap: 8px; align-items: baseline; width: 100%; padding: 5px 4px; cursor: pointer; border-bottom: 1px solid var(--line) }
 .stg:hover { background: var(--raise) }
 .stg:focus-visible { outline: 1px solid var(--accent); outline-offset: -1px }
@@ -314,7 +316,6 @@ table.w.mats td.num { white-space: nowrap }
 .lb figcaption a { color: #fff }
 .lb .lbx { all: unset; position: absolute; top: 12px; right: 16px; font: 14px var(--ui); color: #ddd; cursor: pointer; padding: 5px 10px; border: 1px solid #666 }
 .lb .lbx:hover, .lb .lbx:focus-visible { color: #fff; outline: 1px solid #888 }
-#bDetailFor { color: var(--accent) }
 .bsel { all: unset; box-sizing: border-box; display: flex; gap: 8px; width: 100%; cursor: pointer; font: 13px var(--ui); font-weight: 700; color: var(--ink); padding: 8px 4px 3px; border-bottom: 1px solid var(--line) }
 .bsel:hover { color: var(--ink) }
 .bsel[aria-pressed="true"] { color: var(--accent) }
@@ -450,14 +451,14 @@ table.w.mats td.num { white-space: nowrap }
           <div id="bStages"></div>
         </section>
         <section class="box demobox" aria-labelledby="bDemoH">
-          <p class="cap" id="bDemoH"><b>Demo</b> <span id="bDemoFor"></span></p>
+          <p class="cap" id="bDemoH"><b>Demo</b><span id="bDemoFor"></span></p>
           <div id="bDemo"></div>
         </section>
       </div>
       <div class="rightcol">
         <section class="box listbox" aria-labelledby="bListH">
           <div class="planhead">
-            <p class="cap" id="bListH"><b>Checklist</b> <span class="for" id="bDone"></span></p>
+            <p class="cap" id="bListH"><b>Checklist</b><span class="for" id="bDone"></span></p>
             <span class="spacer"></span>
             <div class="clr" id="bClr" aria-live="polite"></div>
           </div>
@@ -467,12 +468,12 @@ table.w.mats td.num { white-space: nowrap }
       <div class="rightcol">
         <section class="box detailbox" aria-labelledby="bDetailH">
           <div class="planhead">
-            <p class="cap" id="bDetailH"><b>Details</b> <span id="bDetailFor"></span></p>
+            <p class="cap" id="bDetailH"><b>Details</b><span id="bDetailFor"></span></p>
           </div>
           <div id="bPlan"></div>
         </section>
         <section class="box rawbox" aria-labelledby="bRawH">
-          <p class="cap" id="bRawH"><b>Raw materials and found items</b> <span id="bRawFor"></span></p>
+          <p class="cap" id="bRawH"><b>Raw materials and found items</b><span id="bRawFor"></span></p>
           <div id="bRaw"></div>
         </section>
       </div>
